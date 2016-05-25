@@ -1,15 +1,42 @@
+<script type='text/javascript'>
+$(function() {
+  // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
+  Dashing.gridsterLayout('[{"col":1,"row":1,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1},{"col":2,"row":2,"size_x":1,"size_y":1},{"col":1,"row":3,"size_x":2,"size_y":1},{"col":2,"row":1,"size_x":1,"size_y":1},{"col":3,"row":1,"size_x":1,"size_y":1}]')
+  Dashing.widget_base_dimensions = [370, 340]
+  Dashing.numColumns = 5
+});
+</script>
+
 <% content_for :title do %>QTC<% end %>
 
 <div class="gridster">
   <ul>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-view="Image" data-image="/logo-reachlocal-reversed.png"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="sessions" data-view="Number" data-title="Current Sessions"></div>
     </li>
-    <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"> -->
-    <!--   <div data-id="" data-view="Number" data-title="Current Sessions"></div> -->
-    <!-- </li> -->
+
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="orders_remote_flow" data-view="List" data-unordered="true" data-title="Completed Orders" data-moreinfo="# of orders paid by country with Remote flow"></div>
+      <div data-id="completed_orders_seller_flow" data-view="List" data-unordered="true" data-title="Completed Orders" data-moreinfo="# of orders paid by country with Seller flow"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="completed_orders_remote_flow" data-view="List" data-unordered="true" data-title="Completed Orders" data-moreinfo="# of orders paid by country with Remote flow"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="logins" data-view="Graph" data-title="Last Day Valid Logins" style="background-color:#99EFE9;" data-graphtype="line"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="orders_created" data-view="Meter" data-title="Orders Created" data-min="0" data-max="200"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="orders_completed" data-view="Meter" data-title="Orders Completed" data-min="0" data-max="200"></div>
     </li>
   </ul>
 </div>

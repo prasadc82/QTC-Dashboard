@@ -2,9 +2,9 @@ class Dashing.Graph extends Dashing.Widget
 
   @accessor 'current', ->
     return @get('displayedValue') if @get('displayedValue')
-    points = @get('points')
-    if points
-      points[points.length - 1].y
+    points_1 = @get('points_1')
+    if points_1
+      points_1[points_1.length - 1].y
 
   ready: ->
     container = $(@node).parent()
@@ -18,20 +18,26 @@ class Dashing.Graph extends Dashing.Widget
       renderer: @get("graphtype")
       series: [
         {
-        color: "#fff",
+        color: "steelblue",
         data: [{x:0, y:0}]
+        }
+        {
+         color: "red",
+         data: [{x:0, y:0}]
         }
       ]
       padding: {top: 0.02, left: 0.02, right: 0.02, bottom: 0.02}
     )
 
-    @graph.series[0].data = @get('points') if @get('points')
+    @graph.series[0].data = @get('points_1') if @get('points_1')
+    @graph.series[1].data = @get('points_2') if @get('points_2')
 
-    x_axis = new Rickshaw.Graph.Axis.Time(graph: @graph)
+    x_axis = new Rickshaw.Graph.Axis.X(graph: @graph, tickFormat: (x) -> new Date(x * 1000).getDate())
     y_axis = new Rickshaw.Graph.Axis.Y(graph: @graph, tickFormat: Rickshaw.Fixtures.Number.formatKMBT)
     @graph.render()
 
   onData: (data) ->
     if @graph
-      @graph.series[0].data = data.points
+      @graph.series[0].data = data.points_1
+      @graph.series[1].data = data.points_2
       @graph.render()
